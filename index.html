@@ -412,7 +412,7 @@
       <polygon points="25,25 30,38 35,28" fill="#6B4423"/>
       <polygon points="75,25 70,38 65,28" fill="#6B4423"/>
     </svg>
-    <div id="guide-bubble">Tap the balloon that says <b>/s/</b>!</div>
+    <div id="guide-bubble">Tap the balloon with <b>S</b>!</div>
 
     <!-- Banner -->
     <div id="banner">Level complete!</div>
@@ -610,7 +610,7 @@
     function announceTarget() {
       if (!currentTarget) return;
       speakSound(currentTarget);
-      showBubble(`Pop <b>/${currentTarget.spell}/</b>!`);
+      showBubble(`Pop <b>${currentTarget.spell.toUpperCase()}</b>!`);
     }
 
     function showBubble(html, duration = 2500) {
@@ -644,7 +644,7 @@
 
     function setTarget() {
       currentTarget = pickTarget(level);
-      targetSoundEl.textContent = `/${currentTarget.spell}/`;
+      targetSoundEl.textContent = currentTarget.spell.toUpperCase();
       announceTarget();
     }
 
@@ -730,7 +730,7 @@
         el.classList.add('wrong-flash');
         // Teach why
         speak(`Oh! That is ${sound.spell}. We are looking for ${currentTarget.spell}.`, true);
-        showBubble(`Oh! That is <b>/${sound.spell}/</b>. We want <b>/${currentTarget.spell}/</b>!`, 3000);
+        showBubble(`Oh! That is <b>${sound.spell.toUpperCase()}</b>. We want <b>${currentTarget.spell.toUpperCase()}</b>!`, 3000);
         if (lives <= 0) {
           endGame(false);
         }
@@ -813,7 +813,7 @@
           if (wasTarget) {
             // Gentle reminder, no life penalty for young players
             speak(`Oh! You missed ${b.sound.spell}! Listen again.`, true);
-            showBubble(`Oh! You missed <b>/${b.sound.spell}/</b>!`, 2000);
+            showBubble(`Oh! You missed <b>${b.sound.spell.toUpperCase()}</b>!`, 2000);
             announceTarget();
           }
         }
