@@ -721,6 +721,7 @@
         score += 10;
         targetsPopped++;
         popSound();
+        speak(sound.spell, true);
         updateHUD();
         if (targetsPopped % LEVEL_TARGETS === 0) {
           levelUp();
