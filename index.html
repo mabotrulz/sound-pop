@@ -603,8 +603,8 @@
     }
 
     function speakSound(soundObj) {
-      // Phonetic prompt so TTS says the sound, not the letter name
-      speak(soundObj.phonetic, true);
+      // Say the exact letter(s), not a phonetic approximation
+      speak(soundObj.spell, true);
     }
 
     function announceTarget() {
@@ -729,7 +729,7 @@
         updateHUD();
         el.classList.add('wrong-flash');
         // Teach why
-        speak(`Oh! That is ${sound.phonetic}. We are looking for ${currentTarget.phonetic}.`, true);
+        speak(`Oh! That is ${sound.spell}. We are looking for ${currentTarget.spell}.`, true);
         showBubble(`Oh! That is <b>/${sound.spell}/</b>. We want <b>/${currentTarget.spell}/</b>!`, 3000);
         if (lives <= 0) {
           endGame(false);
@@ -812,7 +812,7 @@
           balloons.splice(i, 1);
           if (wasTarget) {
             // Gentle reminder, no life penalty for young players
-            speak(`Oh! You missed ${b.sound.phonetic}! Listen again.`, true);
+            speak(`Oh! You missed ${b.sound.spell}! Listen again.`, true);
             showBubble(`Oh! You missed <b>/${b.sound.spell}/</b>!`, 2000);
             announceTarget();
           }
